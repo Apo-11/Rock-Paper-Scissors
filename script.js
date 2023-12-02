@@ -26,7 +26,10 @@ function playRound(playerSelection, computerSelection){
 
 
             case (playerSelection === computerSelection):
-            return `You drew! You both choose ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()}`;
+                let playerChoice = prompt(`You drew! You both choose ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()}!
+                Let's play another round. Rock, paper or scissors?`).toLowerCase()
+                return(playRound(playerChoice, getComputerChoice()))
+                break;
 
             default:
                 return "Unexpected error in switch"
@@ -39,8 +42,6 @@ function playRound(playerSelection, computerSelection){
     
 }
 
-
-console.log ("Computer choice: " + getComputerChoice())
 let playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase()
 console.log (playerChoice)
 console.log(playRound(playerChoice, getComputerChoice()))
