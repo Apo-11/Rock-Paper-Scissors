@@ -1,3 +1,4 @@
+
 function getComputerChoice() {
     let numberChoice = Math.floor(Math.random() * 3);
     let choice = 
@@ -16,13 +17,17 @@ function playRound(playerSelection, computerSelection){
             case (playerSelection === "rock" && computerSelection === "scissors"
             || playerSelection === "paper" && computerSelection === "rock"
             || playerSelection === "scissors" && computerSelection === "paper"):
-            return `You Won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} beats ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase()}!`;
+            ++playerWin
+            return `You Won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} beats ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase()}!
+            current score: ${playerWin} - ${computerWin}`;
 
 
             case (playerSelection === "rock" && computerSelection === "paper"
             || playerSelection === "paper" && computerSelection === "scissors"
             || playerSelection === "scissors" && computerSelection === "rock"):
-            return `You Lost! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} sucks against ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase()}!`;
+            ++computerWin
+            return `You Lost! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} sucks against ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase()}!
+            current score: ${playerWin} - ${computerWin} `;
 
 
             case (playerSelection === computerSelection):
@@ -42,6 +47,30 @@ function playRound(playerSelection, computerSelection){
     
 }
 
-let playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase()
-console.log (playerChoice)
-console.log(playRound(playerChoice, getComputerChoice()))
+function game() {
+    switch(true) {
+        case (playerWin === 3):
+            console.log("Congratulation! You Won!")
+            break;
+
+        case(computerWin === 3):
+            console.log("Sorry! You Lost!")
+            break;
+
+        default: {
+            let playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase()
+            console.log (playerChoice) 
+            console.log(playRound(playerChoice, getComputerChoice()))
+    }
+    
+    
+   }
+
+}
+
+let playerWin = 0
+let computerWin = 0
+for(;playerWin <=3 || computerWin <= 3;){
+    game()
+}
+
